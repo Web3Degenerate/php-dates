@@ -137,6 +137,12 @@ $displayFullMonth = $ahoraEs->format('F'); //didn't end up using
         // ------------------------------------
 
 // DISPLAY A GIVEN DATE FROM THE DB FOR SPECIFIC FIELD VALUE
+//two lines from: invoices/previous-month-billing-log
+$nextDays = $user->next_days_billing_date;
+$display_next_days_date = date('m/d/y', strtotime($nextDays));
+ //Just one line:                                   
+$display_next_time_date = date('m/d/y', strtotime($user->next_time_billing_date));
+
 $displayFullMonth =  date('F Y', strtotime($selectedMonth));
 
 $displayFullMonth =  date('F Y', strtotime($user->dob));
