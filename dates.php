@@ -335,3 +335,26 @@ QUESTION: Should we set NEXT MONTH field as 7/31/2044 ON an Invoice Object?
         <div class="col-lg-10">
             <h2 style="color:green">{{ $display_month_and_year }} Billing Log: <b>{{ ucwords($spelloutUsersSentToBilling) }} ({{ $displayEcwTotal }}) {{ $display_formatted_billed_patients }} Billed out of {{ $spelloutPotentialBilling }} ({{ $displayTotalCountTracker }}) Total {{ $display_formatted_total_patients }} In {{ $display_month }}</b> </h2>     
             
+
+
+
+
+
+<?php
+
+//******** (3/11/2023) - PHP MODIFY DATE IN DB: ONE DAY AGO -  UPDATED DATE FORMATTING SOLUTION TO AVOID "STRING MODIFY ERROR" ****************************************
+
+// Factor Date Stored as Y-m-d h:m:i like: 2022-06-20 00:00:01  
+// One day Prior is: 2022-06-19
+
+//Solution From: https://www.tutorialspoint.com/php/php_function_date_modify.htm#:~:text=The%20date_modify()%20function%20is,stamp%20of%20the%20given%20object.
+
+    // $date = new DateTime("1990-12-12");
+    // $date->modify("+1 day");
+    // echo $date->format("Y-m-d");
+    
+    $grabBlipDateAsString = new DateTime($display_last_blipcare_factor_date);
+    $grabBlipDateAsString->modify("-1 day");
+    $display_day_before_last_blipcare_factor_date = $grabBlipDateAsString->format("Y-m-d");
+    
+//******** END OF (3/11/2023) - PHP MODIFY DATE IN DB: ONE DAY AGO -  UPDATED DATE FORMATTING SOLUTION TO AVOID "STRING MODIFY ERROR" *****************************************
